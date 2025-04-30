@@ -1,0 +1,9 @@
+.takeout {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+}
+
+.takeout p {
+    font-size: 1.1rem;
+}

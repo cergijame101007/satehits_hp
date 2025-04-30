@@ -1,0 +1,23 @@
+ footer {
+     background-color: #43676B;
+     color: white;
+     text-align: center;
+     padding: 1.5rem 1rem;
+     position: relative;
+ }
+
+ .instagram-link {
+     display: inline-block;
+     margin-top: 1rem;
+ }
+
+ .instagram-icon {
+     width: 30px;
+     height: 30px;
+     filter: brightness(0) invert(1);
+     transition: transform 0.3s ease;
+ }
+
+ .instagram-icon:hover {
+     transform: scale(1.2);
+ }

@@ -1,0 +1,33 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+  font-family: "Noto Serif JP", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ====== セクションの背景交互 ====== */
+section:nth-of-type(even) {
+  background-color: #ffffff;
+}
+
+section:nth-of-type(odd) {
+  background-color: #f6f6f6;
+}
+
+/* ====== 見出しフォントと余白調整 ====== */
+h1,
+h2,
+h3 {
+  font-family: "Noto Serif JP", serif;
+  color: #43676B;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}

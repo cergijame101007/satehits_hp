@@ -1,0 +1,19 @@
+.concept {
+    width: 100%;
+    padding: 2rem;
+    font-family: "Noto Serif JP", serif;
+}
+
+.concept h1 {
+    color: #43676B;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.concept p {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #333;
+    text-align: justify;
+    margin: 0;
+}
