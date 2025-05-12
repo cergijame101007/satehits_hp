@@ -23,6 +23,7 @@ const Form = () => {
     }
 
     const handleCaptchaChange = (token) => {
+        console.log(token);
         setRecaptchaToken(token);
     };
 

@@ -73,6 +73,8 @@ def mask_phone(phone: str) -> str:
 
 @app.post("/api/send")
 async def read_data(form: FormData):
+    print("受信フォーム内容:", form.dict())
+    print("トークン:", form.recaptchaToken)
     if not verify_recaptcha(form.recaptchaToken):
         log_message("error", "reCAPTCHA認証失敗")
         return {"error": "reCAPTCHA validation failed"}
