@@ -36,7 +36,7 @@ const Form = () => {
         const payload = { ...formData, recaptchaToken };
 
         try {
-            await axios.post('http://localhost:8000/api/send', formData);
+            await axios.post('https://satehits.onrender.com/api/send', formData);
             alert('送信されました！');
         } catch (error) {
             console.error('送信エラー:', error);
