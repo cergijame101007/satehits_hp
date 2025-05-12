@@ -28,7 +28,7 @@ def verify_recaptcha(token: str) -> bool:
         data={"secret": SECRET_KEY, "response": token}
     )
     result = response.json()
-    print("reCAPTCHA検証結果:", result)
+    # print("reCAPTCHA検証結果:", result)
     return result.get("success", False)
 
 app = FastAPI()
@@ -73,8 +73,6 @@ def mask_phone(phone: str) -> str:
 
 @app.post("/api/send")
 async def read_data(form: FormData):
-    print("受信フォーム内容:", form.dict())
-    print("トークン:", form.recaptchaToken)
     if not verify_recaptcha(form.recaptchaToken):
         log_message("error", "reCAPTCHA認証失敗")
         return {"error": "reCAPTCHA validation failed"}
@@ -109,7 +107,8 @@ async def read_data(form: FormData):
 
     customer_address = form.email
     customer_subject = "「さて羊に戻るとしよう」ホームページからのお問い合わせ 確認メール"
-    customer_msg_body = f"""【ご予約・お問い合わせ 確認メール】
+    customer_msg_body = f"""このメールは自動送信です。返信しないでください。
+    【ご予約・お問い合わせ 確認メール】
     以下の内容でお問い合わせを受け付けました。
     飲食店オーナーからの返信をお待ちください。
     ※オーナーからの返信をもって、ご予約は確定となります。
@@ -140,7 +139,7 @@ async def read_data(form: FormData):
 
     customer_msg = MIMEText(customer_msg_body)
     customer_msg["Subject"] = customer_subject
-    customer_msg["From"] = sender
+    customer_msg["From"] = f"さて羊に戻るとしよう <{sender}>"
     customer_msg["To"] = customer_address
 
     try:
