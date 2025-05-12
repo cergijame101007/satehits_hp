@@ -6,7 +6,6 @@ import './Form.css';
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 const Form = () => {
-    console.log(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
     const [formData, setFromData] = useState({
         name: '',
         email: '',
@@ -24,7 +23,6 @@ const Form = () => {
     }
 
     const handleCaptchaChange = (token) => {
-        console.log(token);
         setRecaptchaToken(token);
     };
 
@@ -38,7 +36,7 @@ const Form = () => {
         const payload = { ...formData, recaptchaToken };
 
         try {
-            await axios.post('https://satehits-back.onrender.com/api/send', formData);
+            await axios.post('https://satehits-back.onrender.com/api/send', payload);
             alert('送信されました！');
         } catch (error) {
             console.error('送信エラー:', error);
@@ -70,7 +68,7 @@ const Form = () => {
                     <option value="4">4名以上</option>
                 </select>
                 <label for="message">その他ご要望</label>
-                <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange} />
+                <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange}></textarea>
                 <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptchaChange} />
                 <button type="submit">送信する</button>
             </form>
