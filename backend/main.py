@@ -28,6 +28,7 @@ def verify_recaptcha(token: str) -> bool:
         data={"secret": SECRET_KEY, "response": token}
     )
     result = response.json()
+    print("reCAPTCHA検証結果:", result)
     return result.get("success", False)
 
 app = FastAPI()
