@@ -7,7 +7,9 @@ import About from './components/About'
 import Form from './components/Form';
 import Footer from './components/Footer';
 
-function App() {
+// import Test from './components/Test';
+
+const App = () => {
   document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu").querySelector("ul");
@@ -22,6 +24,7 @@ function App() {
       <main>
         <Hero />
         <Concept />
+        {/* <Test /> */}
         <Menu />
         <Takeout />
         <About />

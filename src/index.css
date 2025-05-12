@@ -22,12 +22,14 @@ section:nth-of-type(odd) {
   background-color: #f6f6f6;
 }
 
-/* ====== 見出しフォントと余白調整 ====== */
-h1,
-h2,
-h3 {
-  font-family: "Noto Serif JP", serif;
+section h2 {
   color: #43676B;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  padding-left: 20px;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+section p {
+  font-size: 1.2rem;
 }

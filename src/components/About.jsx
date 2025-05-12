@@ -1,6 +1,6 @@
 import './About.css'
 
-function About() {
+const About = () => {
     return (
         <section id="about">
             <h2>店舗情報</h2>
@@ -20,6 +20,7 @@ function About() {
             <div>
                 <h3>定休日</h3>
                 <p>火曜日　水曜日</p>
+                <p>詳しくは下記のInstagramにて掲示しております</p>
             </div>
             <div>
                 <h3>お車でのご来店について</h3>

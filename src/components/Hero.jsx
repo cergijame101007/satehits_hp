@@ -1,6 +1,6 @@
 import './Hero.css';
 
-function Hero() {
+const Hero = () => {
     return (
         <section id="home" className="hero">
             <div className="heroText">

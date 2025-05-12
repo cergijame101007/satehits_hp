@@ -1,10 +1,9 @@
-/* 店舗情報全体をグリッド化 */
 #about {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     align-items: start;
-    padding-top: o;
+    padding-top: 0;
     margin-top: 0;
 }
 
@@ -21,6 +20,10 @@
 
 #about>div:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#about h2 {
+    padding-left: 50px;
 }
 
 #about h3 {

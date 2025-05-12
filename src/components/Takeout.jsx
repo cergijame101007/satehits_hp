@@ -1,6 +1,6 @@
 import './Takeout.css';
 
-function Takeout() {
+const Takeout = () => {
     return (
         <section id="takeout" className="takeout">
             <h2>テイクアウト</h2>

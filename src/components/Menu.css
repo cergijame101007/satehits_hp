@@ -13,3 +13,11 @@
 .menuItem p {
     font-size: 1.1rem
 }
+
+.menuItem p::before {
+    content: "◇ ";
+}
+
+.menuItem p::after {
+    content: "(税込み)";
+}

@@ -1,6 +1,6 @@
 import './Concept.css';
 
-function Concept() {
+const Concept = () => {
     return (
         <section id="concept" className="concept">
             <h2>当店のコンセプト</h2>

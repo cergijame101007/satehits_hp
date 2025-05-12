@@ -1,6 +1,6 @@
 import './Footer.css';
 
-function Footer() {
+const Footer = () => {
     return (
         <footer>
             <p>© 2025 さて羊に戻るとしよう - All Rights Reserved</p>
