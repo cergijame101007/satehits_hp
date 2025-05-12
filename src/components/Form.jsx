@@ -6,6 +6,7 @@ import './Form.css';
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 const Form = () => {
+    console.log(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
     const [formData, setFromData] = useState({
         name: '',
         email: '',
