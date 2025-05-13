@@ -7,3 +7,5 @@ const Thanks = () => {
         </section>
     )
 }
+
+export default Thanks;
