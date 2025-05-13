@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
 import ReCAPTCHA from "react-google-recaptcha";
+import { useNavigate } from "react-router-dom";
 import './Form.css';
 
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
@@ -26,10 +27,12 @@ const Form = () => {
         setRecaptchaToken(token);
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!recaptchaToken) {
-            alert("reCAPTCHA認証を行ってください");
+            alert('reCAPTCHA認証を行ってください');
             return;
         }
 
@@ -37,7 +40,7 @@ const Form = () => {
 
         try {
             await axios.post('https://satehits-back.onrender.com/api/send', payload);
-            alert('送信されました！');
+            navigate('/thanks');
         } catch (error) {
             console.error('送信エラー:', error);
             alert('送信に失敗しました。');

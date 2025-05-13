@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Concept from './components/Concept';
@@ -6,8 +7,8 @@ import Takeout from './components/Takeout';
 import About from './components/About'
 import Form from './components/Form';
 import Footer from './components/Footer';
+import Thanks from './components/Thanks';
 
-// import Test from './components/Test';
 
 const App = () => {
   document.addEventListener("DOMContentLoaded", () => {
@@ -19,19 +20,26 @@ const App = () => {
     });
   });
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Concept />
-        {/* <Test /> */}
-        <Menu />
-        <Takeout />
-        <About />
-        <Form />
-      </main>
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={
+          <>
+            <Header />
+            <main>
+              <Hero />
+              <Concept />
+              <Menu />
+              <Takeout />
+              <About />
+              <Form />
+            </main>
+            <Footer />
+          </>
+        } />
+        <Route path='/thanks' element={<Thanks />} />
+      </Routes>
+    </BrowserRouter>
+
   )
 }
 

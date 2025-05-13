@@ -107,9 +107,7 @@ async def read_data(form: FormData):
 
     customer_address = form.email
     customer_subject = "「さて羊に戻るとしよう」ホームページからのお問い合わせ 確認メール"
-    customer_msg_body = f"""このメールは自動送信です。返信しないでください。
-    【ご予約・お問い合わせ 確認メール】
-    以下の内容でお問い合わせを受け付けました。
+    customer_msg_body = f"""ご予約ありがとうございます。以下の内容でお問い合わせを受け付けました。
     飲食店オーナーからの返信をお待ちください。
     ※オーナーからの返信をもって、ご予約は確定となります。
 
