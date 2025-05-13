@@ -151,7 +151,7 @@ async def read_data(form: FormData):
         log_message("error", f"メール送信失敗: {str(e)}")
         return {"error": str(e)}
 
-@app.get("/api/check")
+@app.head("/api/check")
 async def server_check():
     return {"status": "ok" }
 
