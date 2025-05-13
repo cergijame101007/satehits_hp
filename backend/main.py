@@ -90,7 +90,7 @@ async def read_data(form: FormData):
     owner_msg_body = f"""【ご予約・お問い合わせ】
     以下のご予約・お問い合わせをホームページから受け付けました。
 
-    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     ■お名前:{form.name}様
     ■メール:{form.email}
     ■電話番号:{form.phoneNum}
@@ -98,7 +98,7 @@ async def read_data(form: FormData):
     ■時間:{form.time}
     ■人数:{form.peopleNum}
     ■ご要望:{form.message}
-    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
     """
     owner_msg = MIMEText(owner_msg_body)
     owner_msg["Subject"] = owner_subject
@@ -151,6 +151,9 @@ async def read_data(form: FormData):
         log_message("error", f"メール送信失敗: {str(e)}")
         return {"error": str(e)}
 
+@app.get("/api/check")
+async def server_check():
+    return {"status": "ok" }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
