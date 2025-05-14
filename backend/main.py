@@ -9,6 +9,7 @@ import requests
 import logging
 import os
 from dotenv import load_dotenv
+import slackweb
 
 load_dotenv()
 
@@ -28,13 +29,13 @@ def verify_recaptcha(token: str) -> bool:
         data={"secret": SECRET_KEY, "response": token}
     )
     result = response.json()
-    # print("reCAPTCHA検証結果:", result)
     return result.get("success", False)
 
 app = FastAPI()
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 
 app.add_middleware(
     CORSMiddleware,
@@ -53,6 +54,14 @@ class FormData(BaseModel):
     peopleNum: str
     message: str
     recaptchaToken: Optional[str] = None
+
+def slack_notify(message: str):
+    try:
+        slack = slackweb.Slack(url=WEBHOOK_URL)
+        slack.notify(message)  
+        log_message("info", "slack通知成功")
+    except Exception as e:
+        log_message("error", f"Slack通知失敗: {str(e)}")
 
 def mask_email(email: str) -> str:
     try:
@@ -75,6 +84,7 @@ def mask_phone(phone: str) -> str:
 async def read_data(form: FormData):
     if not verify_recaptcha(form.recaptchaToken):
         log_message("error", "reCAPTCHA認証失敗")
+        slack_notify("reCAPTCHA認証失敗")
         return {"error": "reCAPTCHA validation failed"}
     
     masked_email = mask_email(form.email)
@@ -146,9 +156,11 @@ async def read_data(form: FormData):
             server.send_message(owner_msg)
             server.send_message(customer_msg)
             log_message("info", f"メール送信成功: {masked_email}")
+            slack_notify(f"メール送信成功: {masked_email}")
         return {"message": "メール送信成功"}
     except Exception as e:
         log_message("error", f"メール送信失敗: {str(e)}")
+        slack_notify(f"メール送信失敗: {str(e)}")
         return {"error": str(e)}
 
 @app.head("/api/check")
