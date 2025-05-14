@@ -58,7 +58,7 @@ class FormData(BaseModel):
 def slack_notify(message: str):
     try:
         slack = slackweb.Slack(url=WEBHOOK_URL)
-        slack.notify(message)  
+        slack.notify(text=message)  
         log_message("info", "slack通知成功")
     except Exception as e:
         log_message("error", f"Slack通知失敗: {str(e)}")
