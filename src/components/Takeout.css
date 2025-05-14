@@ -11,3 +11,14 @@
 .takeout p::before {
     content: "◇ ";
 }
+
+.takeout div {
+    font-size: 1.1rem;
+}
+
+.takeout a {
+    display: inline-block;
+    padding: 0px;
+    color: black;
+    text-decoration: underline;
+}
