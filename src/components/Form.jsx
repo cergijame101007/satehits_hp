@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import './Form.css';
+import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js'
 
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
@@ -18,9 +19,23 @@ const Form = () => {
     })
 
     const [recaptchaToken, setRecaptchaToken] = useState("");
+    const [phoneError, setPhoneError] = useState("");
 
     const handleChange = (e) => {
-        setFromData({ ...formData, [e.target.name]: e.target.value })
+        setFromData({ ...formData, [e.target.name]: e.target.value });
+
+        if (e.target.name === "phoneNum") {
+            const cleaned = e.target.value.replace(/[-\s]/g, "");
+            const isValid =
+                (cleaned.length === 10 || cleaned.length === 11) &&
+                isValidPhoneNumber(`+81${cleaned.slice(1)}`, "JP");
+
+            if (!isValid) {
+                setPhoneError("無効な電話番号です。正しい10桁または11桁の番号を入力してください。")
+            } else {
+                setPhoneError("")
+            }
+        }
     }
 
     const handleCaptchaChange = (token) => {
@@ -31,12 +46,26 @@ const Form = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const cleaned = formData.phoneNum.replace(/[-\s]/g, "");
+        const isValidPhone =
+            (cleaned.length === 10 || cleaned.length === 11) &&
+            isValidPhoneNumber(`+81${cleaned.slice(1)}`, "JP");
+
+        if (!isValidPhone) {
+            setPhoneError("無効な電話番号です。正しい番号を入力してください。");
+            return;
+        }
+
         if (!recaptchaToken) {
             alert('reCAPTCHA認証を行ってください');
             return;
         }
 
-        const payload = { ...formData, recaptchaToken };
+        const payload = {
+            ...formData, message: formData.message.trim() === '' ? 'なし' : formData.message,
+            recaptchaToken
+        };
 
         try {
             await axios.post('https://satehits-back.onrender.com/api/send', payload);
@@ -47,6 +76,12 @@ const Form = () => {
         }
     };
 
+    const isFormValid = (
+        phoneError === "" &&
+        formData.name && formData.email && formData.phoneNum && formData.date && formData.time && formData.peopleNum &&
+        recaptchaToken
+    )
+
     return (
         <section id="contact" className="form-wrapper">
             <h2>ご予約・お問い合わせ</h2>
@@ -56,7 +91,8 @@ const Form = () => {
                 <label for="email" class="required">メールアドレス</label>
                 <input type="email" id="email" name="email" placeholder="例: yamada@example.com" onChange={handleChange} value={formData.email} required />
                 <label for="phone" class="required">電話番号</label>
-                <input type="tel" id="phone" name="phoneNum" placeholder="例: 090-1234-5678" onChange={handleChange} value={formData.phoneNum} required />
+                <input type="tel" id="phone" name="phoneNum" placeholder="例: 09012345678" onChange={handleChange} value={formData.phoneNum} required />
+                {phoneError && <p className="error">{phoneError}</p>}
                 <label for="date" class="required">ご来店希望日</label>
                 <input type="date" id="date" name="date" onChange={handleChange} value={formData.data} required />
                 <label for="time" class="required">ご来店希望時間</label>
@@ -71,9 +107,9 @@ const Form = () => {
                     <option value="4">4名以上</option>
                 </select>
                 <label for="message">その他ご要望</label>
-                <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange}></textarea>
+                <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange} value={formData.message}></textarea>
                 <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptchaChange} />
-                <button type="submit">送信する</button>
+                <button type="submit" disabled={!isFormValid}>送信する</button>
             </form>
         </section>
     );
