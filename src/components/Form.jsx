@@ -3,12 +3,12 @@ import axios from 'axios';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import './Form.css';
-import { isValidPhoneNumber, parsePhoneNumber } from 'libphonenumber-js'
+import { isValidPhoneNumber } from 'libphonenumber-js'
 
 const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 const Form = () => {
-    const [formData, setFromData] = useState({
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         phoneNum: '',
@@ -20,9 +20,10 @@ const Form = () => {
 
     const [recaptchaToken, setRecaptchaToken] = useState("");
     const [phoneError, setPhoneError] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setFromData({ ...formData, [e.target.name]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
 
         if (e.target.name === "phoneNum") {
             const cleaned = e.target.value.replace(/[-\s]/g, "");
@@ -41,8 +42,6 @@ const Form = () => {
     const handleCaptchaChange = (token) => {
         setRecaptchaToken(token);
     };
-
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -86,19 +85,19 @@ const Form = () => {
         <section id="contact" className="form-wrapper">
             <h2>ご予約・お問い合わせ</h2>
             <form onSubmit={handleSubmit}>
-                <label for="name" class="required">お名前</label>
-                <input type="text" id="name" name="name" placeholder="例: 山田 太郎" onChange={handleChange} value={formData.name} equired />
-                <label for="email" class="required">メールアドレス</label>
+                <label htmlFor="name" class="required">お名前</label>
+                <input type="text" id="name" name="name" placeholder="例: 山田 太郎" onChange={handleChange} value={formData.name} required />
+                <label htmlFor="email" class="required">メールアドレス</label>
                 <input type="email" id="email" name="email" placeholder="例: yamada@example.com" onChange={handleChange} value={formData.email} required />
-                <label for="phone" class="required">電話番号</label>
+                <label htmlFor="phone" class="required">電話番号</label>
                 <input type="tel" id="phone" name="phoneNum" placeholder="例: 09012345678" onChange={handleChange} value={formData.phoneNum} required />
                 {phoneError && <p className="error">{phoneError}</p>}
-                <label for="date" class="required">ご来店希望日</label>
-                <input type="date" id="date" name="date" onChange={handleChange} value={formData.data} required />
-                <label for="time" class="required">ご来店希望時間</label>
+                <label htmlFor="date" class="required">ご来店希望日</label>
+                <input type="date" id="date" name="date" onChange={handleChange} value={formData.date} required />
+                <label htmlFor="time" class="required">ご来店希望時間</label>
                 <input type="time" id="time" name="time" onChange={handleChange} value={formData.time} required />
 
-                <label for="number" class="required">人数</label>
+                <label htmlFor="number" class="required">人数</label>
                 <select id="number" name="peopleNum" onChange={handleChange} value={formData.peopleNum} required>
                     <option value="">選択してください</option>
                     <option value="1">1名</option>
@@ -106,7 +105,7 @@ const Form = () => {
                     <option value="3">3名</option>
                     <option value="4">4名以上</option>
                 </select>
-                <label for="message">その他ご要望</label>
+                <label htmlFor="message">その他ご要望</label>
                 <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange} value={formData.message}></textarea>
                 <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptchaChange} />
                 <button type="submit" disabled={!isFormValid}>送信する</button>
