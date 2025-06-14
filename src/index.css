@@ -24,6 +24,7 @@ section:nth-of-type(odd) {
 
 section {
   scroll-margin-top: 80px;
+  padding: 40px 30px 40px 30px;
 }
 
 section h2 {
