@@ -35,6 +35,14 @@ section h2 {
   font-size: 1.8rem;
 }
 
+section h3 {
+  color: #43676B;
+  padding-left: 10px;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
 section p {
   font-size: 1.2rem;
 }

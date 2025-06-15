@@ -12,6 +12,10 @@
     content: "◇ ";
 }
 
+.takeout p::after {
+    content: "(税込み)";
+}
+
 .takeout div {
     font-size: 1.1rem;
 }
