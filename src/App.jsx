@@ -7,7 +7,8 @@ import Takeout from './components/Takeout';
 import About from './components/About'
 import Form from './components/Form';
 import Footer from './components/Footer';
-import Thanks from './components/Thanks';
+import Thanks from './Thanks';
+import Partner from './Partner'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
           </>
         } />
         <Route path='/thanks' element={<Thanks />} />
+        <Route path='/partner' element={<Partner />} />
       </Routes>
     </BrowserRouter>
 
