@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header>
             <div className="logo">
-                <Link to="/home">さて羊に戻るとしよう</Link>
+                <Link to="/">さて羊に戻るとしよう</Link>
             </div>
             <nav id="nav-menu">
                 <ul className={menuOpen ? 'show' : ''}>
@@ -26,7 +26,7 @@ const Header = () => {
 
                     <li>
                         <Link to={isPartnerPage ? '/' : '/partner'} className='partner-link'>
-                            {isPartnerPage ? 'トップページ' : 'お取引様ページ'}
+                            {isPartnerPage ? 'トップページ' : 'お取引先ページ'}
                         </Link>
                     </li>
                 </ul>
