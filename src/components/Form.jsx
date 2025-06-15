@@ -85,19 +85,19 @@ const Form = () => {
         <section id="contact" className="form-wrapper">
             <h2>ご予約・お問い合わせ</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="name" class="required">お名前</label>
+                <label htmlFor="name" className="required">お名前</label>
                 <input type="text" id="name" name="name" placeholder="例: 山田 太郎" onChange={handleChange} value={formData.name} required />
-                <label htmlFor="email" class="required">メールアドレス</label>
+                <label htmlFor="email" className="required">メールアドレス</label>
                 <input type="email" id="email" name="email" placeholder="例: yamada@example.com" onChange={handleChange} value={formData.email} required />
-                <label htmlFor="phone" class="required">電話番号</label>
+                <label htmlFor="phone" className="required">電話番号</label>
                 <input type="tel" id="phone" name="phoneNum" placeholder="例: 09012345678" onChange={handleChange} value={formData.phoneNum} required />
                 {phoneError && <p className="error">{phoneError}</p>}
-                <label htmlFor="date" class="required">ご来店希望日</label>
+                <label htmlFor="date" className="required">ご来店希望日</label>
                 <input type="date" id="date" name="date" onChange={handleChange} value={formData.date} required />
-                <label htmlFor="time" class="required">ご来店希望時間</label>
+                <label htmlFor="time" className="required">ご来店希望時間</label>
                 <input type="time" id="time" name="time" onChange={handleChange} value={formData.time} required />
 
-                <label htmlFor="number" class="required">人数</label>
+                <label htmlFor="number" className="required">人数</label>
                 <select id="number" name="peopleNum" onChange={handleChange} value={formData.peopleNum} required>
                     <option value="">選択してください</option>
                     <option value="1">1名</option>
