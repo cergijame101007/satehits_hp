@@ -107,7 +107,9 @@ const Form = () => {
                 </select>
                 <label htmlFor="message">その他ご要望</label>
                 <textarea id="message" name="message" rows="4" placeholder="例：アレルギー対応について、席の希望など" onChange={handleChange} value={formData.message}></textarea>
-                <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptchaChange} />
+                <div className="recaptcha-wrapper">
+                    <ReCAPTCHA sitekey={SITE_KEY} onChange={handleCaptchaChange} />
+                </div>
                 <button type="submit" disabled={!isFormValid}>送信する</button>
             </form>
         </section>
