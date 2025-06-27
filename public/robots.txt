@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /
+Sitemap: https://satehits.onrender.com/sitemap.xml
