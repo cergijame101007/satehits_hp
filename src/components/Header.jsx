@@ -26,7 +26,7 @@ const Header = () => {
 
                     <li>
                         <Link to={isPartnerPage ? '/' : '/partner'} className='partner-link'>
-                            {isPartnerPage ? 'トップページ' : 'お取引先ページ'}
+                            {isPartnerPage ? 'トップ' : 'お取引先'}
                         </Link>
                     </li>
                 </ul>

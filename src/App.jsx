@@ -9,18 +9,30 @@ import About from './components/About'
 import Form from './components/Form';
 import Footer from './components/Footer';
 import Thanks from './Thanks';
-import Partner from './Partner'
+import Partner from './Partner';
+import { useEffect } from 'react';
 
 
 const App = () => {
-  document.addEventListener("DOMContentLoaded", () => {
+  useEffect(() => {
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu").querySelector("ul");
 
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-    });
-  });
+    if (hamburger && navMenu) {
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+      });
+    }
+
+    return () => {
+      if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+          navMenu.classList.toggle("show");
+        });
+      }
+    }
+  }, [])
+
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -44,9 +56,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </HelmetProvider>
-
-
-  )
-}
+  );
+};
 
 export default App
