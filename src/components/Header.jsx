@@ -1,11 +1,32 @@
 import { useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 import './Header.css';
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
     const isPartnerPage = location.pathname === '/partner';
+
+    useEffect(() => {
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu").querySelector("ul");
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener("click", () => {
+                navMenu.classList.toggle("show");
+            });
+        }
+
+        return () => {
+            if (hamburger && navMenu) {
+                hamburger.addEventListener("click", () => {
+                    navMenu.classList.toggle("show");
+                });
+            }
+        }
+    }, [])
+
 
     return (
         <header>
