@@ -19,6 +19,7 @@ const Hero = () => {
         "url": "https://satehits.onrender.com/",
         "priceRange": "\\",
         "description": "高岡市で営業中の間借りレストラン。火・水定休で11:00～14:30営業(L.O.13:45)",
+        "acceptsReservations": "https://satehits.onrender.com/#form",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
