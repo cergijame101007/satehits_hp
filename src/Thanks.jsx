@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
 import './Thanks.css'
 
 const Thanks = () => {
+    usePageMeta('ご予約ありがとうございました | さて羊に戻るとしよう', [
+        { attr: 'name', key: 'robots', content: 'noindex, nofollow' }
+    ]);
+
     return (
         <>
-            <Helmet>
-                <title>ご予約ありがとうございました | さて羊に戻るとしよう</title>
-                <meta name="robots" content="noindex, nofollow" />
-            </Helmet>
             <section className='thanks-wrapper'>
                 <h2>送信ありがとうございました！</h2>
                 <p>飲食店オーナーがご予約内容を確認し、折り返しご入力いただいたメールアドレスへ折り返しご連絡いたします。</p>
