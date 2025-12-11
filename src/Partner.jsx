@@ -1,23 +1,23 @@
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { Helmet } from 'react-helmet-async';
 import './Partner.css'
 import './index.css'
+import { usePageMeta } from './hooks/usePageMeta';
+
+const metaDefinitions = [
+    { attr: 'name',     key: 'description',    content: '飲食店『さて羊に戻るとしよう』がお世話になっているお取引先の一覧をご紹介します。' },
+    { attr: 'property', key: 'og:title',       content: 'お取引先一覧 | さて羊に戻るとしよう' },
+    { attr: 'property', key: 'og:description', content: '当店のお取引先一覧。仕入れ・協力企業などをご紹介します。' },
+    { attr: 'property', key: 'og:url',         content: 'https://satehits.onrender.com/partner' },
+    { attr: 'property', key: 'og:type',        content: 'website' },
+    { attr: 'name',     key: 'robots',         content: 'index, follow' }
+];
 
 const Partner = () => {
+    usePageMeta('お取引先一覧 | さて羊に戻るとしよう', metaDefinitions);
+
     return (
         <>
-            <Helmet>
-                <title>お取引先 | さて羊に戻るとしよう</title>
-                <meta name='description' content='飲食店『さて羊に戻るとしよう』がお世話になっているお取引先の一覧をご紹介します。' />
-
-                <meta property='og:title' content='お取引先一覧 | さて羊に戻るとしよう' />
-                <meta property='og:description' content='当店のお取引先一覧。仕入れ・協力企業などをご紹介します。' />
-                <meta property='og:url' content='https://satehits.onrender.com/partner' />
-                <meta property='og:type' content='website' />
-
-                <meta name='robots' content='index, follow' />
-            </Helmet>
             <Header />
             <main className='partner-wrapper'>
                 <section>
@@ -27,7 +27,6 @@ const Partner = () => {
             </main>
             <Footer />
         </>
-
     )
 }
 
